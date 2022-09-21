@@ -32,11 +32,11 @@ typedef struct
 	_TCHAR** listOfLogicalDrives;
 	int numberOfLogicalDrives;
 	int maxNumberOfLogicalDrives;
-} logical_drive_variables_t;
+} logical_drive_class_variables_t;
 
 typedef struct
 {
-	logical_drive_variables_t* var;
+	logical_drive_class_variables_t* var;
 } logical_drive_class_t;
 
 logical_drive_class_t* logical_drive_class_create();
