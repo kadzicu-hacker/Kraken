@@ -26,4 +26,21 @@
 
 #ifndef __logical__drive__class__h__
 #define __logical__drive__class__h__
+
+typedef struct
+{
+	_TCHAR** listOfLogicalDrives;
+	int numberOfLogicalDrives;
+	int maxNumberOfLogicalDrives;
+} logical_drive_variables_t;
+
+typedef struct
+{
+	logical_drive_variables_t* var;
+} logical_drive_class_t;
+
+logical_drive_class_t* logical_drive_class_create();
+static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t*);
+void logical_drive_class_destroy(logical_drive_class_t*);
+
 #endif // !__logical__drive__class__h__

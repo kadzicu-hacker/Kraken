@@ -23,3 +23,18 @@
 */
 
 #include "LogicalDriveClass.h"
+
+logical_drive_class_t* logical_drive_class_create()
+{
+    return NULL;
+}
+
+static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* class) 
+{
+    return NULL;
+}
+
+void logical_drive_class_destroy(logical_drive_class_t* class) 
+{
+
+}

@@ -23,6 +23,7 @@
 */
 
 #include "def.h"
+#include "LogicalDriveClass.h"
 
 #ifndef _DEBUG
 int APIENTRY _tWinMain(
@@ -35,5 +36,4 @@ int APIENTRY _tWinMain(
 int _tmain()
 #endif 
 {
-
 }
