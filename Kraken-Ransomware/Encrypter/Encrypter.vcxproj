@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LogicalDriveClass.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
+    <ClInclude Include="LogicalDriveClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -85,6 +87,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>5105;4100;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -103,6 +106,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>5105;4100;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -121,6 +125,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>5105;4100;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -139,6 +144,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>5105;4100;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
