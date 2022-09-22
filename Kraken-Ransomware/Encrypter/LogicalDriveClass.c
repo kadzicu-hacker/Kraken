@@ -76,7 +76,7 @@ static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* th
     var->listOfLogicalDrives = (_TCHAR**)malloc(var->maxNumberOfLogicalDrives * sizeof(_TCHAR*));
     if (var->listOfLogicalDrives)
     {
-        for (size_t i = 0; i < var->maxNumberOfLogicalDrives; i++)
+        for (size_t i = 0x00; i < var->maxNumberOfLogicalDrives; i++)
             var->listOfLogicalDrives[i] = (_TCHAR*)malloc((MAX_PATH + 0x01) * sizeof(_TCHAR));
         logical_drive_class_init_list_of_logical_drives(this);
         return this;
@@ -94,7 +94,7 @@ static void logical_drive_class_destroy(logical_drive_class_t* this)
             logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
             if (var->listOfLogicalDrives)
             {
-                for (size_t i = 0; i < var->maxNumberOfLogicalDrives; i++)
+                for (size_t i = 0x00; i < var->maxNumberOfLogicalDrives; i++)
                     if (var->listOfLogicalDrives[i])
                         free(var->listOfLogicalDrives[i]);
                 free(var->listOfLogicalDrives);
