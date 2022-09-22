@@ -24,11 +24,9 @@
 
 #include "LogicalDriveClass.h"
 
-static logical_drive_class_t* logical_drive_class_obj;
-
 logical_drive_class_t* logical_drive_class_create()
 {
-    logical_drive_class_obj = (logical_drive_class_t*)malloc(sizeof(logical_drive_class_t));
+    logical_drive_class_t* logical_drive_class_obj = (logical_drive_class_t*)malloc(sizeof(logical_drive_class_t));
     if (logical_drive_class_obj)
     {
         logical_drive_class_obj->impl_ = malloc(sizeof(logical_drive_class_variables_t));
