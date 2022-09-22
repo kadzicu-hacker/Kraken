@@ -27,6 +27,10 @@
 #ifndef __logical__drive__class__h__
 #define __logical__drive__class__h__
 
+#pragma warning(disable : 4113)
+#pragma warning(disable : 4115)
+#pragma warning(disable : 4133)
+
 typedef struct
 {
     _TCHAR** listOfLogicalDrives;
@@ -36,10 +40,10 @@ typedef struct
 
 typedef struct
 {
-    void(*destroy)();
-    _TCHAR**(*get_var_list_of_logical_drives)();
-    int(*get_var_number_of_logical_drives)();
-    int(*get_var_max_number_of_logical_drives)();
+    void(*destroy)(struct logical_drive_class_t*);
+    _TCHAR**(*get_var_list_of_logical_drives)(struct logical_drive_class_t*);
+    int(*get_var_number_of_logical_drives)(struct logical_drive_class_t*);
+    int(*get_var_max_number_of_logical_drives)(struct logical_drive_class_t*);
 } logical_drive_class_methods_t;
 
 typedef struct
@@ -54,9 +58,9 @@ static void logical_drive_class_destroy(logical_drive_class_t*);
 static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
-static void destroy();
-static _TCHAR** get_var_list_of_logical_drives();
-static int get_var_number_of_logical_drives();
-static int get_var_max_number_of_logical_drives();
+static void destroy(logical_drive_class_t*);
+static _TCHAR** get_var_list_of_logical_drives(logical_drive_class_t*);
+static int get_var_number_of_logical_drives(logical_drive_class_t*);
+static int get_var_max_number_of_logical_drives(logical_drive_class_t*);
 
 #endif // !__logical__drive__class__h__

@@ -127,22 +127,22 @@ static int logical_drive_class_get_var_max_number_of_logical_drives(logical_driv
     return var->maxNumberOfLogicalDrives;
 }
 
-static void destroy()
+static void destroy(logical_drive_class_t* this)
 {
-    logical_drive_class_destroy(logical_drive_class_obj);
+    logical_drive_class_destroy(this);
 }
 
-static _TCHAR** get_var_list_of_logical_drives() 
+static _TCHAR** get_var_list_of_logical_drives(logical_drive_class_t* this)
 {
-    return logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_obj);
+    return logical_drive_class_get_var_list_of_logical_drives(this);
 }
 
-static int get_var_number_of_logical_drives() 
+static int get_var_number_of_logical_drives(logical_drive_class_t* this)
 {
-    return logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_obj);
+    return logical_drive_class_get_var_number_of_logical_drives(this);
 }
 
-static int get_var_max_number_of_logical_drives() 
+static int get_var_max_number_of_logical_drives(logical_drive_class_t* this)
 {
-    return logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_obj);
+    return logical_drive_class_get_var_max_number_of_logical_drives(this);
 }

@@ -39,6 +39,6 @@ int _tmain()
 #endif 
 {
     logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
-    _tprintf(_T("%i"), logical_drive_class_obj->method->get_var_max_number_of_logical_drives());
-    logical_drive_class_obj->method->destroy();
+    _tprintf(_T("%i"), logical_drive_class_obj->method->get_var_max_number_of_logical_drives(logical_drive_class_obj));
+    logical_drive_class_obj->method->destroy(logical_drive_class_obj);
 }
