@@ -72,7 +72,7 @@ static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* th
 
     logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
     var->numberOfLogicalDrives = 0x00;
-    var->maxNumberOfLogicalDrives = 0xA;
+    var->maxNumberOfLogicalDrives = 0x14;
     var->listOfLogicalDrives = (_TCHAR**)malloc(var->maxNumberOfLogicalDrives * sizeof(_TCHAR*));
     if (var->listOfLogicalDrives)
     {
