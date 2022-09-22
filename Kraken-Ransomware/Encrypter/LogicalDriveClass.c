@@ -78,6 +78,7 @@ static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* th
     {
         for (size_t i = 0; i < var->maxNumberOfLogicalDrives; i++)
             var->listOfLogicalDrives[i] = (_TCHAR*)malloc((MAX_PATH + 0x01) * sizeof(_TCHAR));
+        logical_drive_class_init_list_of_logical_drives(this);
         return this;
     }
     else
@@ -143,4 +144,53 @@ static int get_var_number_of_logical_drives(logical_drive_class_t* this)
 static int get_var_max_number_of_logical_drives(logical_drive_class_t* this)
 {
     return logical_drive_class_get_var_max_number_of_logical_drives(this);
+}
+
+static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_t* this) 
+{
+    _TCHAR logicalDrivesBuffer[MAX_PATH + 0x01];
+    _TCHAR* logicalDrive = logicalDrivesBuffer;
+
+    _TCHAR userNameBuffer[MAX_PATH + 0x01];
+    DWORD userNameLength = 0x100 + 0x01;
+
+    logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+
+    if ((GetLogicalDriveStrings(MAX_PATH + 0x01, logicalDrivesBuffer) != 0x00) &&
+        (GetUserName(userNameBuffer, &userNameLength) != 0x00))
+    {
+        while (*logicalDrive)
+        {
+            _TCHAR currentLogicalDrive[MAX_PATH + 0x01];
+            _tcscpy_s(currentLogicalDrive, _countof(currentLogicalDrive), logicalDrive);
+            currentLogicalDrive[
+                _tcslen(currentLogicalDrive) - 0x01
+            ] = '\0';
+
+            _TCHAR userFolder[MAX_PATH + 0x01];
+            _tcscpy_s(userFolder, _countof(userFolder), currentLogicalDrive);
+            _tcscat_s(userFolder, _countof(userFolder), _T("\\Users\\"));
+            _tcscat_s(userFolder, _countof(userFolder), userNameBuffer);
+
+            if ((GetDriveType(currentLogicalDrive) == DRIVE_FIXED) ||
+                (GetDriveType(currentLogicalDrive) == DRIVE_REMOTE) ||
+                (GetDriveType(currentLogicalDrive) == DRIVE_RAMDISK) ||
+                (GetDriveType(currentLogicalDrive) == DRIVE_REMOVABLE))
+            {
+                if (PathFileExists(userFolder))
+                {
+                    _stprintf_s(var->listOfLogicalDrives[var->numberOfLogicalDrives], MAX_PATH + 0x01, _T("%s"), userFolder);
+                    ++var->numberOfLogicalDrives;
+                }
+                else
+                {
+                    _stprintf_s(var->listOfLogicalDrives[var->numberOfLogicalDrives], MAX_PATH + 0x01, _T("%s"), currentLogicalDrive);
+                    ++var->numberOfLogicalDrives;
+                }
+            }
+            logicalDrive += _tcslen(
+                logicalDrive
+            ) + 0x01;
+        }
+    }
 }
