@@ -54,9 +54,9 @@ static void logical_drive_class_destroy(logical_drive_class_t*);
 static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
+static void destroy();
 static _TCHAR** get_var_list_of_logical_drives();
 static int get_var_number_of_logical_drives();
 static int get_var_max_number_of_logical_drives();
-static void destroy();
 
 #endif // !__logical__drive__class__h__
