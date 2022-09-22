@@ -29,23 +29,23 @@
 
 typedef struct
 {
-	_TCHAR** listOfLogicalDrives;
-	int numberOfLogicalDrives;
-	int maxNumberOfLogicalDrives;
+    _TCHAR** listOfLogicalDrives;
+    int numberOfLogicalDrives;
+    int maxNumberOfLogicalDrives;
 } logical_drive_class_variables_t;
 
 typedef struct
 {
-	void(*destroy)();
-	_TCHAR**(*get_var_list_of_logical_drives)();
-	int(*get_var_number_of_logical_drives)();
-	int(*get_var_max_number_of_logical_drives)();
+    void(*destroy)();
+    _TCHAR**(*get_var_list_of_logical_drives)();
+    int(*get_var_number_of_logical_drives)();
+    int(*get_var_max_number_of_logical_drives)();
 } logical_drive_class_methods_t;
 
 typedef struct
 {
-	void* impl_;
-	logical_drive_class_methods_t* method;
+    void* impl_;
+    logical_drive_class_methods_t* method;
 } logical_drive_class_t;
 
 logical_drive_class_t* logical_drive_class_create();
