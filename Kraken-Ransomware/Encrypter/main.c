@@ -40,8 +40,6 @@ int _tmain()
 {
     logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
     for (size_t i = 0; i < logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj); i++)
-    {
         _tprintf(_T("%s"), logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj)[i]);
-    }
     logical_drive_class_obj->method->destroy(logical_drive_class_obj);
 }
