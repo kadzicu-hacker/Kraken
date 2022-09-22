@@ -36,11 +36,27 @@ typedef struct
 
 typedef struct
 {
-	logical_drive_class_variables_t* var;
+	void(*destroy)();
+	_TCHAR**(*get_var_list_of_logical_drives)();
+	int(*get_var_number_of_logical_drives)();
+	int(*get_var_max_number_of_logical_drives)();
+} logical_drive_class_methods_t;
+
+typedef struct
+{
+	void* impl_;
+	logical_drive_class_methods_t* method;
 } logical_drive_class_t;
 
 logical_drive_class_t* logical_drive_class_create();
 static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t*);
-void logical_drive_class_destroy(logical_drive_class_t*);
+static void logical_drive_class_destroy(logical_drive_class_t*);
+static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
+static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
+static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
+static _TCHAR** get_var_list_of_logical_drives();
+static int get_var_number_of_logical_drives();
+static int get_var_max_number_of_logical_drives();
+static void destroy();
 
 #endif // !__logical__drive__class__h__

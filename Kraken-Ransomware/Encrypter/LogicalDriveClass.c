@@ -24,17 +24,125 @@
 
 #include "LogicalDriveClass.h"
 
+static logical_drive_class_t* logical_drive_class_obj;
+
 logical_drive_class_t* logical_drive_class_create()
 {
-    return NULL;
+    logical_drive_class_obj = (logical_drive_class_t*)malloc(sizeof(logical_drive_class_t));
+    if (logical_drive_class_obj)
+    {
+        logical_drive_class_obj->impl_ = malloc(sizeof(logical_drive_class_variables_t));
+        if (logical_drive_class_obj->impl_)
+        {
+            logical_drive_class_obj->method = (logical_drive_class_methods_t*)malloc(sizeof(logical_drive_class_methods_t));
+            if (logical_drive_class_obj->method) 
+            {
+                logical_drive_class_t* res = logical_drive_class_init(logical_drive_class_obj);
+                if (res)
+                    return res;
+                else
+                {
+                    free(logical_drive_class_obj->method);
+                    free(logical_drive_class_obj->impl_);
+                    free(logical_drive_class_obj);
+                    return NULL;
+                }
+            }
+            else
+            {
+                free(logical_drive_class_obj->impl_);
+                free(logical_drive_class_obj);
+                return NULL;
+            }
+        }
+        else
+        {
+            free(logical_drive_class_obj);
+            return NULL;
+        }
+    }
+    else
+        return NULL;
 }
 
-static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* class) 
+static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* this) 
 {
-    return NULL;
+    this->method->get_var_list_of_logical_drives = get_var_list_of_logical_drives;
+    this->method->get_var_number_of_logical_drives = get_var_number_of_logical_drives;
+    this->method->get_var_max_number_of_logical_drives = get_var_max_number_of_logical_drives;
+    this->method->destroy = destroy;
+
+    logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+    var->numberOfLogicalDrives = 0x00;
+    var->maxNumberOfLogicalDrives = 0xA;
+    var->listOfLogicalDrives = (_TCHAR**)malloc(var->maxNumberOfLogicalDrives * sizeof(_TCHAR*));
+    if (var->listOfLogicalDrives)
+    {
+        for (size_t i = 0; i < var->maxNumberOfLogicalDrives; i++)
+            var->listOfLogicalDrives[i] = (_TCHAR*)malloc((MAX_PATH + 0x01) * sizeof(_TCHAR));
+        return this;
+    }
+    else
+        return NULL;
 }
 
-void logical_drive_class_destroy(logical_drive_class_t* class) 
+static void logical_drive_class_destroy(logical_drive_class_t* this) 
 {
+    if (this)
+    {
+        if (this->impl_) 
+        {
+            logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+            if (var->listOfLogicalDrives)
+            {
+                for (size_t i = 0; i < var->maxNumberOfLogicalDrives; i++)
+                    if (var->listOfLogicalDrives[i])
+                        free(var->listOfLogicalDrives[i]);
+                free(var->listOfLogicalDrives);
+            }
+            free(this->impl_);
+        }
+        if (this->method)
+            free(this->method);
+        free(this);
+    }
+}
 
+static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t* this) 
+{
+    logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+
+    return var->listOfLogicalDrives;
+}
+static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t* this) 
+{
+    logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+
+    return var->numberOfLogicalDrives;
+}
+static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t* this) 
+{
+    logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
+
+    return var->maxNumberOfLogicalDrives;
+}
+
+static _TCHAR** get_var_list_of_logical_drives() 
+{
+    return logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_obj);
+}
+
+static int get_var_number_of_logical_drives() 
+{
+    return logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_obj);
+}
+
+static int get_var_max_number_of_logical_drives() 
+{
+    return logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_obj);
+}
+
+static void destroy() 
+{
+    logical_drive_class_destroy(logical_drive_class_obj);
 }
