@@ -39,7 +39,10 @@ int _tmain()
 #endif 
 {
     logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
-    for (size_t i = 0; i < logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj); i++)
-        _tprintf(_T("%s"), logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj)[i]);
+    int number_of_logical_drives = logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj);
+    _TCHAR** list_of_logical_drives = logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj);
+
+    for (size_t i = 0; i < number_of_logical_drives; i++)
+        _tprintf(_T("%s"), list_of_logical_drives[i]);
     logical_drive_class_obj->method->destroy(logical_drive_class_obj);
 }
