@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="LogicalDriveClass.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="SearchEngineClass.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
     <ClInclude Include="LogicalDriveClass.h" />
+    <ClInclude Include="SearchEngineClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

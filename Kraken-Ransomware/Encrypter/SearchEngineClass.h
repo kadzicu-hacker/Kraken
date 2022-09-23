@@ -24,19 +24,15 @@
 
 #include "def.h"
 
-#ifndef __logical__drive__class__h__
-#define __logical__drive__class__h__
+#ifndef __search__engine__class__h__
+#define __search__engine__class__h__
 
-logical_drive_class_t* logical_drive_class_create();
-static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t*);
-static void logical_drive_class_destroy(logical_drive_class_t*);
-static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
-static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
-static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
-static void destroy(logical_drive_class_t*);
-static _TCHAR** get_var_list_of_logical_drives(logical_drive_class_t*);
-static int get_var_number_of_logical_drives(logical_drive_class_t*);
-static int get_var_max_number_of_logical_drives(logical_drive_class_t*);
-static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_t*);
+search_engine_class_t* search_engine_class_create(logical_drive_class_t*);
+static search_engine_class_t* search_engine_class_init(search_engine_class_t*, logical_drive_class_t*);
+static void search_engine_class_destroy(search_engine_class_t*);
+static void search_engine_class_start(search_engine_class_t*);
+static void destroy(search_engine_class_t*);
+static void start(search_engine_class_t*);
+static int compare(LPCVOID, LPCVOID);
 
-#endif // !__logical__drive__class__h__
+#endif // !__search__engine__class__h__

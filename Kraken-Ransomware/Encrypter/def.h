@@ -33,4 +33,48 @@
 
 #pragma comment(lib, "shlwapi.lib")
 
+#pragma warning(disable : 4113)
+#pragma warning(disable : 4115)
+#pragma warning(disable : 4133)
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    _TCHAR** listOfLogicalDrives;
+    int numberOfLogicalDrives;
+    int maxNumberOfLogicalDrives;
+} logical_drive_class_variables_t;
+
+typedef struct
+{
+    void(*destroy)(struct logical_drive_class_t*);
+    _TCHAR** (*get_var_list_of_logical_drives)(struct logical_drive_class_t*);
+    int(*get_var_number_of_logical_drives)(struct logical_drive_class_t*);
+    int(*get_var_max_number_of_logical_drives)(struct logical_drive_class_t*);
+} logical_drive_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    logical_drive_class_methods_t* method;
+} logical_drive_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    _TCHAR** arrayOfFileExtensions;
+    size_t fileExtensionArraySize;
+    logical_drive_class_t* logical_drive_class_obj;
+} search_engine_class_variables_t;
+
+typedef struct
+{
+    void(*destroy)(struct search_engine_class_t*);
+    void(*start)(struct search_engine_class_t*);
+} search_engine_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    search_engine_class_methods_t* method;
+} search_engine_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__
