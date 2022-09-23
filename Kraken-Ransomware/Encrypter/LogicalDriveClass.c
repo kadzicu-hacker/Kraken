@@ -155,12 +155,12 @@ static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_
     DWORD userNameLength = 0x100 + 0x01;
 
     _TCHAR userFolder[MAX_PATH + 0x01];
-    SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0x00, userFolder);
 
     logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
 
     if ((GetLogicalDriveStrings(MAX_PATH + 0x01, logicalDrivesBuffer) != 0x00) &&
-        (GetUserName(userNameBuffer, &userNameLength) != 0x00))
+        (GetUserName(userNameBuffer, &userNameLength) != 0x00) && 
+        (SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0x00, userFolder) == S_OK))
     {
         while (*logicalDrive)
         {
