@@ -23,6 +23,7 @@
 */
 
 #include "LogicalDriveClass.h"
+#include "SearchEngineClass.h"
 
 #pragma warning(disable : 4100)
 
@@ -38,10 +39,14 @@ int _tmain()
 #endif 
 {
     logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
-    int number_of_logical_drives = logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj);
-    _TCHAR** list_of_logical_drives = logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj);
-
-    for (size_t i = 0; i < number_of_logical_drives; i++)
-        _tprintf(_T("%s"), list_of_logical_drives[i]);
-    logical_drive_class_obj->method->destroy(logical_drive_class_obj);
+    if (logical_drive_class_obj)
+    {
+        search_engine_class_t* search_engine_class_obj = search_engine_class_create(logical_drive_class_obj);
+        if (search_engine_class_obj)
+        {
+            search_engine_class_obj->method->se_start(search_engine_class_obj);
+            search_engine_class_obj->method->se_destroy(search_engine_class_obj);
+        }
+        logical_drive_class_obj->method->ld_destroy(logical_drive_class_obj);
+    }
 }

@@ -46,7 +46,7 @@ typedef struct
 
 typedef struct
 {
-    void(*destroy)(struct logical_drive_class_t*);
+    void(*ld_destroy)(struct logical_drive_class_t*);
     _TCHAR** (*get_var_list_of_logical_drives)(struct logical_drive_class_t*);
     int(*get_var_number_of_logical_drives)(struct logical_drive_class_t*);
     int(*get_var_max_number_of_logical_drives)(struct logical_drive_class_t*);
@@ -67,8 +67,8 @@ typedef struct
 
 typedef struct
 {
-    void(*destroy)(struct search_engine_class_t*);
-    void(*start)(struct search_engine_class_t*);
+    void(*se_destroy)(struct search_engine_class_t*);
+    void(*se_start)(struct search_engine_class_t*);
 } search_engine_class_methods_t;
 
 typedef struct

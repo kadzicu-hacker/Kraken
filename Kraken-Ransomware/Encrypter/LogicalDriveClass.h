@@ -33,7 +33,7 @@ static void logical_drive_class_destroy(logical_drive_class_t*);
 static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
 static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
-static void destroy(logical_drive_class_t*);
+static void ld_destroy(logical_drive_class_t*);
 static _TCHAR** get_var_list_of_logical_drives(logical_drive_class_t*);
 static int get_var_number_of_logical_drives(logical_drive_class_t*);
 static int get_var_max_number_of_logical_drives(logical_drive_class_t*);

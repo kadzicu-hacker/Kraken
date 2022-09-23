@@ -100,3 +100,90 @@ _TCHAR* arrayOfFileExtensions[] =
     _T("xlwx"),     _T("xml"),      _T("xpi"),     _T("xpt"),   _T("xqx"),   _T("xvid"),     _T("xwd"),        _T("xz"),       _T("yab"),  _T("ycbcr"),
     _T("yps"),      _T("yuv"),      _T("z"),       _T("z02"),   _T("z04"),   _T("zap"),      _T("zip"),        _T("zipx"),     _T("zoo")
 };
+
+search_engine_class_t* search_engine_class_create(logical_drive_class_t* logical_drive_class_obj)
+{
+    search_engine_class_t* search_engine_class_obj = (search_engine_class_t*)malloc(sizeof(search_engine_class_t));
+    if (search_engine_class_obj)
+    {
+        search_engine_class_obj->impl_ = malloc(sizeof(search_engine_class_variables_t));
+        if (search_engine_class_obj->impl_)
+        {
+            search_engine_class_obj->method = (search_engine_class_methods_t*)malloc(sizeof(search_engine_class_methods_t));
+            if (search_engine_class_obj->method)
+            {
+                search_engine_class_t* res = search_engine_class_init(search_engine_class_obj, logical_drive_class_obj);
+                if (res)
+                    return res;
+                else
+                {
+                    free(search_engine_class_obj->method);
+                    free(search_engine_class_obj->impl_);
+                    free(search_engine_class_obj);
+                    return NULL;
+                }
+            }
+            else
+            {
+                free(search_engine_class_obj->impl_);
+                free(search_engine_class_obj);
+                return NULL;
+            }
+        }
+        else
+        {
+            free(search_engine_class_obj);
+            return NULL;
+        }
+    }
+    else
+        return NULL;
+}
+
+static search_engine_class_t* search_engine_class_init(search_engine_class_t* this, logical_drive_class_t* logical_drive_class_obj)
+{
+    this->method->se_destroy = se_destroy;
+    this->method->se_start = se_start;
+
+    search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
+    var->arrayOfFileExtensions = arrayOfFileExtensions;
+    var->fileExtensionArraySize = _countof(arrayOfFileExtensions);
+    var->logical_drive_class_obj = logical_drive_class_obj;
+
+    return this;
+}
+
+static void search_engine_class_destroy(search_engine_class_t* this) 
+{
+    if (this)
+    {
+        if (this->impl_)
+            free(this->impl_);
+        if (this->method)
+            free(this->method);
+        free(this);
+    }
+}
+
+static void search_engine_class_start(search_engine_class_t* this) 
+{
+
+}
+
+static void se_destroy(search_engine_class_t* this)
+{
+    search_engine_class_destroy(this);
+}
+
+static void se_start(search_engine_class_t* this)
+{
+    search_engine_class_start(this);
+}
+
+static int se_compare(LPCVOID arg1, LPCVOID arg2)
+{
+    return _tcsicmp(
+        *(_TCHAR**)arg1,
+        *(_TCHAR**)arg2
+    );
+}

@@ -65,7 +65,7 @@ logical_drive_class_t* logical_drive_class_create()
 
 static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t* this) 
 {
-    this->method->destroy = destroy;
+    this->method->ld_destroy = ld_destroy;
     this->method->get_var_list_of_logical_drives = get_var_list_of_logical_drives;
     this->method->get_var_number_of_logical_drives = get_var_number_of_logical_drives;
     this->method->get_var_max_number_of_logical_drives = get_var_max_number_of_logical_drives;
@@ -126,7 +126,7 @@ static int logical_drive_class_get_var_max_number_of_logical_drives(logical_driv
     return var->maxNumberOfLogicalDrives;
 }
 
-static void destroy(logical_drive_class_t* this)
+static void ld_destroy(logical_drive_class_t* this)
 {
     logical_drive_class_destroy(this);
 }
