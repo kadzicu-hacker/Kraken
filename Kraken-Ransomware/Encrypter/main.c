@@ -22,7 +22,6 @@
 * SOFTWARE.
 */
 
-#include "def.h"
 #include "LogicalDriveClass.h"
 
 #pragma warning(disable : 4100)
