@@ -154,6 +154,9 @@ static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_
     _TCHAR userNameBuffer[MAX_PATH + 0x01];
     DWORD userNameLength = 0x100 + 0x01;
 
+    _TCHAR userFolder[MAX_PATH + 0x01];
+    SHGetFolderPath(NULL, CSIDL_PROFILE, NULL, 0x00, userFolder);
+
     logical_drive_class_variables_t* var = (logical_drive_class_variables_t*)this->impl_;
 
     if ((GetLogicalDriveStrings(MAX_PATH + 0x01, logicalDrivesBuffer) != 0x00) &&
@@ -167,19 +170,19 @@ static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_
                 _tcslen(currentLogicalDrive) - 0x01
             ] = '\0';
 
-            _TCHAR userFolder[MAX_PATH + 0x01];
-            _tcscpy_s(userFolder, _countof(userFolder), currentLogicalDrive);
-            _tcscat_s(userFolder, _countof(userFolder), _T("\\Users\\"));
-            _tcscat_s(userFolder, _countof(userFolder), userNameBuffer);
+            _TCHAR currentUserFolder[MAX_PATH + 0x01];
+            _tcscpy_s(currentUserFolder, _countof(currentUserFolder), currentLogicalDrive);
+            _tcscat_s(currentUserFolder, _countof(currentUserFolder), _T("\\Users\\"));
+            _tcscat_s(currentUserFolder, _countof(currentUserFolder), userNameBuffer);
 
             if ((GetDriveType(currentLogicalDrive) == DRIVE_FIXED) ||
                 (GetDriveType(currentLogicalDrive) == DRIVE_REMOTE) ||
                 (GetDriveType(currentLogicalDrive) == DRIVE_RAMDISK) ||
                 (GetDriveType(currentLogicalDrive) == DRIVE_REMOVABLE))
             {
-                if (PathFileExists(userFolder))
+                if (!lstrcmp(userFolder, currentUserFolder))
                 {
-                    _stprintf_s(var->listOfLogicalDrives[var->numberOfLogicalDrives], MAX_PATH + 0x01, _T("%s"), userFolder);
+                    _stprintf_s(var->listOfLogicalDrives[var->numberOfLogicalDrives], MAX_PATH + 0x01, _T("%s"), currentUserFolder);
                     ++var->numberOfLogicalDrives;
                 }
                 else

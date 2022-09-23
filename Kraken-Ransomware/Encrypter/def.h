@@ -25,9 +25,9 @@
 #ifndef __def__h__
 #define __def__h__
 
-#include <time.h>
 #include <stdio.h>
 #include <tchar.h>
+#include <shlobj.h> 
 #include <windows.h>
 #include <shlwapi.h>
 
