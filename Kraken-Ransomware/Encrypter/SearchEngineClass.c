@@ -150,6 +150,8 @@ static search_engine_class_t* search_engine_class_init(search_engine_class_t* th
     var->fileExtensionArraySize = _countof(arrayOfFileExtensions);
     var->logical_drive_class_obj = logical_drive_class_obj;
 
+    qsort(var->arrayOfFileExtensions, var->fileExtensionArraySize, sizeof(_TCHAR*), se_compare);
+
     return this;
 }
 
