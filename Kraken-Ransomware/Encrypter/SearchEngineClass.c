@@ -167,9 +167,62 @@ static void search_engine_class_destroy(search_engine_class_t* this)
     }
 }
 
-static void search_engine_class_start(search_engine_class_t* this) 
+static void search_engine_class_start(LPCTSTR currentLogicalDrive, search_engine_class_t* this)
 {
+    _TCHAR currentPath[MAX_PATH + 0x01];
+    _tcscpy_s(currentPath, _countof(currentPath), currentLogicalDrive);
+    _tcscat_s(currentPath, _countof(currentPath), _T("\\"));
 
+    _TCHAR findParam[MAX_PATH + 0x01];
+    _tcscpy_s(findParam, _countof(findParam), currentPath);
+    _tcscat_s(findParam, _countof(findParam), _T("*"));
+
+    HANDLE hFind;
+    WIN32_FIND_DATA findData;
+
+    search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
+
+    if ((hFind = FindFirstFile(findParam, &findData)) != INVALID_HANDLE_VALUE)
+    {
+        do
+        {
+            if (!lstrcmp(findData.cFileName, _T(".")) ||
+                !lstrcmp(findData.cFileName, _T("..")) ||
+                findData.cFileName[0x00] == _T('.'))
+                continue;
+
+            _TCHAR currentFile[MAX_PATH + 0x01];
+            _tcscpy_s(currentFile, _countof(currentFile), currentPath);
+            _tcscat_s(currentFile, _countof(currentFile), findData.cFileName);
+
+            if (!(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN) &&
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM) &&
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_TEMPORARY) &&
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+            {
+                _TCHAR* currentFileExt = PathFindExtension(
+                    currentFile
+                ) + 0x01;
+
+                if (bsearch(&currentFileExt, var->arrayOfFileExtensions, var->fileExtensionArraySize, sizeof(_TCHAR*), se_compare))
+                {
+#ifndef _DEBUG
+                    if (findData.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
+                        SetFileAttributes(currentFile, FILE_ATTRIBUTE_NORMAL);
+#else
+                    _tprintf(_T("%s\n"), currentFile);
+#endif
+                }
+            }
+
+            if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY &&
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM) &&
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
+                search_engine_class_start(currentFile, this);
+        } while (FindNextFile(hFind, &findData));
+
+        FindClose(hFind);
+    }
 }
 
 static void se_destroy(search_engine_class_t* this)
@@ -179,7 +232,11 @@ static void se_destroy(search_engine_class_t* this)
 
 static void se_start(search_engine_class_t* this)
 {
-    search_engine_class_start(this);
+    search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
+    logical_drive_class_t* logical_drive_class_obj = var->logical_drive_class_obj;
+
+    for (size_t i = 0; i < logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj); i++)
+        search_engine_class_start(logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj)[i], this);
 }
 
 static int se_compare(LPCVOID arg1, LPCVOID arg2)
