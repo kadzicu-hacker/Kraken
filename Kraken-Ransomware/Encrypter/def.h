@@ -86,9 +86,9 @@ typedef struct
 typedef struct
 {
     void(*ocf_destroy)(struct open_close_file_class_t*);
-    open_close_file_class_t* (*open_file_rb)(struct open_close_file_class_t*);
-    open_close_file_class_t* (*open_file_wb)(struct open_close_file_class_t*);
-    open_close_file_class_t* (*open_file_rwb)(struct open_close_file_class_t*);
+    void(*open_file_rb)(struct open_close_file_class_t*);
+    void(*open_file_wb)(struct open_close_file_class_t*);
+    void(*open_file_rwb)(struct open_close_file_class_t*);
 } open_close_file_class_methods_t;
 
 typedef struct
