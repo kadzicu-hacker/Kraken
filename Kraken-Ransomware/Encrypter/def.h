@@ -81,6 +81,8 @@ typedef struct
 {
     FILE* file;
     LONG64 fileSize;
+    LPCTSTR path;
+    int errorSuccess;
 } open_close_file_class_variables_t;
 
 typedef struct
@@ -89,6 +91,7 @@ typedef struct
     void(*open_file_rb)(struct open_close_file_class_t*);
     void(*open_file_wb)(struct open_close_file_class_t*);
     void(*open_file_rwb)(struct open_close_file_class_t*);
+    int(*get_error_success)(struct logical_drive_class_t*);
 } open_close_file_class_methods_t;
 
 typedef struct

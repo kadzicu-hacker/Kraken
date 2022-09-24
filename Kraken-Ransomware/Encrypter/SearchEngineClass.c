@@ -171,8 +171,8 @@ static void search_engine_class_destroy(search_engine_class_t* this)
 }
 
 static void search_engine_class_start(
-        LPCTSTR currentLogicalDrive, 
-        search_engine_class_t* this
+        search_engine_class_t* this,
+        LPCTSTR currentLogicalDrive
     )
 {
     _TCHAR currentPath[MAX_PATH + 0x01];

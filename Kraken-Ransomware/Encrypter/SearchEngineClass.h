@@ -30,7 +30,7 @@
 search_engine_class_t* search_engine_class_create(logical_drive_class_t*);
 static search_engine_class_t* search_engine_class_init(search_engine_class_t*, logical_drive_class_t*);
 static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(LPCTSTR, search_engine_class_t*);
+static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
 static void se_destroy(search_engine_class_t*);
 static void se_start(search_engine_class_t*);
 static int se_compare(LPCVOID, LPCVOID);

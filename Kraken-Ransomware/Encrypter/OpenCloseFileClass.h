@@ -28,15 +28,17 @@
 #define __open__close__file__class__h__
 
 open_close_file_class_t* open_close_file_class_create(LPCTSTR);
-static open_close_file_class_t* open_close_file_class_init(open_close_file_class_t*);
+static open_close_file_class_t* open_close_file_class_init(open_close_file_class_t*, LPCTSTR);
 static void open_close_file_class_destroy(open_close_file_class_t*);
 static void open_close_file_class_open_file_rb(open_close_file_class_t*);
 static void open_close_file_class_open_file_wb(open_close_file_class_t*);
 static void open_close_file_class_open_file_rwb(open_close_file_class_t*);
-static void open_close_file_class_open_file_main(open_close_file_class_t*);
+static void open_close_file_class_open_file_main(open_close_file_class_t*, LPCTSTR);
+static int open_close_file_class_get_error_success(open_close_file_class_t*);
 static void ocf_destroy(open_close_file_class_t*);
 static void ocf_open_file_rb(open_close_file_class_t*);
 static void ocf_open_file_wb(open_close_file_class_t*);
 static void ocf_open_file_rwb(open_close_file_class_t*);
+static int get_error_success(open_close_file_class_t*);
 
 #endif // !__open__close__file__class__h__
