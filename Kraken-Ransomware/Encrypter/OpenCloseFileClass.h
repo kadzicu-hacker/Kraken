@@ -33,6 +33,7 @@ static void open_close_file_class_destroy(open_close_file_class_t*);
 static void open_close_file_class_open_file_rb(open_close_file_class_t*);
 static void open_close_file_class_open_file_wb(open_close_file_class_t*);
 static void open_close_file_class_open_file_rwb(open_close_file_class_t*);
+static void open_close_file_class_open_file_main(open_close_file_class_t*);
 static void ocf_destroy(open_close_file_class_t*);
 static void ocf_open_file_rb(open_close_file_class_t*);
 static void ocf_open_file_wb(open_close_file_class_t*);
