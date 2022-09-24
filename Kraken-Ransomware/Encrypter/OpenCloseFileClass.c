@@ -70,6 +70,7 @@ static open_close_file_class_t* open_close_file_class_init(open_close_file_class
 	this->method->open_file_wb = ocf_open_file_wb;
 	this->method->open_file_rwb = ocf_open_file_rwb;
 	this->method->get_error_success = get_error_success;
+	this->method->get_file = get_file;
 
 	open_close_file_class_variables_t* var = (open_close_file_class_variables_t*)this->impl_;
 	var->file = NULL;
@@ -138,6 +139,13 @@ static int open_close_file_class_get_error_success(open_close_file_class_t* this
 	return var->errorSuccess;
 }
 
+static FILE* open_close_file_class_get_file(open_close_file_class_t* this) 
+{
+	open_close_file_class_variables_t* var = (open_close_file_class_variables_t*)this->impl_;
+
+	return var->file;
+}
+
 static void ocf_destroy(open_close_file_class_t* this) 
 {
 	open_close_file_class_destroy(this);
@@ -161,4 +169,9 @@ static void ocf_open_file_rwb(open_close_file_class_t* this)
 static int get_error_success(open_close_file_class_t* this) 
 {
 	return open_close_file_class_get_error_success(this);
+}
+
+static FILE* get_file(open_close_file_class_t* this) 
+{
+	return open_close_file_class_get_file(this);
 }
