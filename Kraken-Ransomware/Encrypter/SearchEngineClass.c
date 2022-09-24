@@ -224,7 +224,7 @@ static void search_engine_class_start(
             if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY &&
                 !(findData.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM) &&
                 !(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
-                search_engine_class_start(currentFile, this);
+                search_engine_class_start(this, currentFile);
         } while (FindNextFile(hFind, &findData));
 
         FindClose(hFind);
