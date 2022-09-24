@@ -77,7 +77,7 @@ static open_close_file_class_t* open_close_file_class_init(open_close_file_class
 	var->file = NULL;
 	var->fileSize = 0x00;
 	var->path = path;
-	var->errorSuccess = 0x01;
+	var->errorSuccess = !(ERROR_SUCCESS);
 
 	return this;
 }
@@ -122,7 +122,7 @@ static void open_close_file_class_open_file_main(open_close_file_class_t* this, 
 	{
 		if (var->file != NULL)
 		{
-			var->errorSuccess = 0x00;
+			var->errorSuccess = ERROR_SUCCESS;
 
 			_fseeki64(var->file, 0x00, SEEK_END);
 			var->fileSize = _ftelli64(var->file);
@@ -130,7 +130,7 @@ static void open_close_file_class_open_file_main(open_close_file_class_t* this, 
 		}
 	}
 	else
-		var->errorSuccess = 0x01;
+		var->errorSuccess = !(ERROR_SUCCESS);
 }
 
 static int open_close_file_class_get_var_error_success(open_close_file_class_t* this) 
