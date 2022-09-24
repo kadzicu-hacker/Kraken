@@ -66,9 +66,9 @@ open_close_file_class_t* open_close_file_class_create(LPCTSTR path)
 static open_close_file_class_t* open_close_file_class_init(open_close_file_class_t* this, LPCTSTR path) 
 {
 	this->method->ocf_destroy = ocf_destroy;
-	this->method->open_file_rb = ocf_open_file_rb;
-	this->method->open_file_wb = ocf_open_file_wb;
-	this->method->open_file_rwb = ocf_open_file_rwb;
+	this->method->ocf_open_file_rb = ocf_open_file_rb;
+	this->method->ocf_open_file_wb = ocf_open_file_wb;
+	this->method->ocf_open_file_rwb = ocf_open_file_rwb;
 	this->method->get_error_success = get_error_success;
 	this->method->get_file = get_file;
 
