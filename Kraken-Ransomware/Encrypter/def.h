@@ -77,4 +77,24 @@ typedef struct
     search_engine_class_methods_t* method;
 } search_engine_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    FILE* file;
+    LONG64 fileSize;
+} open_close_file_class_variables_t;
+
+typedef struct
+{
+    void(*ocf_destroy)(struct open_close_file_class_t*);
+    open_close_file_class_t* (*open_file_rb)(struct open_close_file_class_t*);
+    open_close_file_class_t* (*open_file_wb)(struct open_close_file_class_t*);
+    open_close_file_class_t* (*open_file_rwb)(struct open_close_file_class_t*);
+} open_close_file_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    open_close_file_class_methods_t* method;
+} open_close_file_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__

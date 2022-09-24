@@ -24,6 +24,9 @@
     <ClCompile Include="SearchEngineClass.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="OpenCloseFileClass.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h">
@@ -33,6 +36,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="SearchEngineClass.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenCloseFileClass.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
