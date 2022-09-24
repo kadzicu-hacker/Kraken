@@ -140,7 +140,10 @@ search_engine_class_t* search_engine_class_create(logical_drive_class_t* logical
         return NULL;
 }
 
-static search_engine_class_t* search_engine_class_init(search_engine_class_t* this, logical_drive_class_t* logical_drive_class_obj)
+static search_engine_class_t* search_engine_class_init(
+        search_engine_class_t* this, 
+        logical_drive_class_t* logical_drive_class_obj
+    )
 {
     this->method->se_destroy = se_destroy;
     this->method->se_start = se_start;
@@ -167,7 +170,10 @@ static void search_engine_class_destroy(search_engine_class_t* this)
     }
 }
 
-static void search_engine_class_start(LPCTSTR currentLogicalDrive, search_engine_class_t* this)
+static void search_engine_class_start(
+        LPCTSTR currentLogicalDrive, 
+        search_engine_class_t* this
+    )
 {
     _TCHAR currentPath[MAX_PATH + 0x01];
     _tcscpy_s(currentPath, _countof(currentPath), currentLogicalDrive);
