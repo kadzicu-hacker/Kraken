@@ -235,8 +235,11 @@ static void se_start(search_engine_class_t* this)
     search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
     logical_drive_class_t* logical_drive_class_obj = var->logical_drive_class_obj;
 
-    for (size_t i = 0; i < logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj); i++)
-        search_engine_class_start(logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj)[i], this);
+    int number_of_logical_drives = logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj);
+    _TCHAR** list_of_logical_drives = logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj);
+
+    for (size_t i = 0; i < number_of_logical_drives; i++)
+        search_engine_class_start(list_of_logical_drives[i], this);
 }
 
 static int se_compare(LPCVOID arg1, LPCVOID arg2)
