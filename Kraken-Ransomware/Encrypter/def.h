@@ -25,6 +25,7 @@
 #ifndef __def__h__
 #define __def__h__
 
+#include <time.h>
 #include <stdio.h>
 #include <tchar.h>
 #include <shlobj.h> 
@@ -101,5 +102,22 @@ typedef struct
     void* impl_;
     open_close_file_class_methods_t* method;
 } open_close_file_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    LPCTSTR path;
+} file_shredder_class_variables_t;
+
+typedef struct
+{
+    void(*fs_destroy)(struct file_shredder_class_t*);
+    void(*fs_start)(struct file_shredder_class_t*);
+} file_shredder_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    file_shredder_class_methods_t* method;
+} file_shredder_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__

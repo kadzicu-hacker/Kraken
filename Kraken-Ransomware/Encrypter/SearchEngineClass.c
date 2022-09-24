@@ -215,6 +215,10 @@ static void search_engine_class_start(
 #ifndef _DEBUG
                     if (findData.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
                         SetFileAttributes(currentFile, FILE_ATTRIBUTE_NORMAL);
+
+                    file_shredder_class_t* file_shredder_class_obj = file_shredder_class_create(currentFile);
+                    file_shredder_class_obj->method->fs_start(file_shredder_class_obj);
+                    file_shredder_class_obj->method->fs_destroy(file_shredder_class_obj);
 #else
                     _tprintf(_T("%s\n"), currentFile);
 #endif

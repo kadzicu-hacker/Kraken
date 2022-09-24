@@ -94,7 +94,7 @@ static void open_close_file_class_destroy(open_close_file_class_t* this)
 			free(this->impl_);
 		}
 		if (this->method)
-			this->method;
+			free(this->method);
 		free(this);
 	}
 }
@@ -128,6 +128,8 @@ static void open_close_file_class_open_file_main(open_close_file_class_t* this, 
 			var->fileSize = _ftelli64(var->file);
 			_fseeki64(var->file, 0x00, SEEK_SET);
 		}
+		else
+			var->errorSuccess = !(ERROR_SUCCESS);
 	}
 	else
 		var->errorSuccess = !(ERROR_SUCCESS);

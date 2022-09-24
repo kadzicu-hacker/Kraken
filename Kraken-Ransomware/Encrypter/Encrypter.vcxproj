@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FileShredderClass.c" />
     <ClCompile Include="LogicalDriveClass.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="OpenCloseFileClass.c" />
@@ -26,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
+    <ClInclude Include="FileShredderClass.h" />
     <ClInclude Include="LogicalDriveClass.h" />
     <ClInclude Include="OpenCloseFileClass.h" />
     <ClInclude Include="SearchEngineClass.h" />
