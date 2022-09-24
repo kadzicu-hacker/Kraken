@@ -36,11 +36,13 @@ static void open_close_file_class_open_file_rwb(open_close_file_class_t*);
 static void open_close_file_class_open_file_main(open_close_file_class_t*, LPCTSTR);
 static int open_close_file_class_get_var_error_success(open_close_file_class_t*);
 static FILE* open_close_file_class_get_var_file(open_close_file_class_t*);
+static LONG64 open_close_file_class_get_var_file_size(open_close_file_class_t*);
 static void ocf_destroy(open_close_file_class_t*);
 static void ocf_open_file_rb(open_close_file_class_t*);
 static void ocf_open_file_wb(open_close_file_class_t*);
 static void ocf_open_file_rwb(open_close_file_class_t*);
 static int get_var_error_success(open_close_file_class_t*);
 static FILE* get_var_file(open_close_file_class_t*);
+static LONG64 get_var_file_size(open_close_file_class_t*);
 
 #endif // !__open__close__file__class__h__

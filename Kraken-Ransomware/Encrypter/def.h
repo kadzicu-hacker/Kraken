@@ -93,6 +93,7 @@ typedef struct
     void(*ocf_open_file_rwb)(struct open_close_file_class_t*);
     int(*get_var_error_success)(struct open_close_file_class_t*);
     FILE*(*get_var_file)(struct open_close_file_class_t*);
+    LONG64(*get_var_file_size)(struct open_close_file_class_t*);
 } open_close_file_class_methods_t;
 
 typedef struct

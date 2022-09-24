@@ -71,6 +71,7 @@ static open_close_file_class_t* open_close_file_class_init(open_close_file_class
 	this->method->ocf_open_file_rwb = ocf_open_file_rwb;
 	this->method->get_var_error_success = get_var_error_success;
 	this->method->get_var_file = get_var_file;
+	this->method->get_var_file_size = get_var_file_size;
 
 	open_close_file_class_variables_t* var = (open_close_file_class_variables_t*)this->impl_;
 	var->file = NULL;
@@ -146,6 +147,13 @@ static FILE* open_close_file_class_get_var_file(open_close_file_class_t* this)
 	return var->file;
 }
 
+static LONG64 open_close_file_class_get_var_file_size(open_close_file_class_t* this) 
+{
+	open_close_file_class_variables_t* var = (open_close_file_class_variables_t*)this->impl_;
+
+	return var->fileSize;
+}
+
 static void ocf_destroy(open_close_file_class_t* this) 
 {
 	open_close_file_class_destroy(this);
@@ -174,4 +182,9 @@ static int get_var_error_success(open_close_file_class_t* this)
 static FILE* get_var_file(open_close_file_class_t* this) 
 {
 	return open_close_file_class_get_var_file(this);
+}
+
+static LONG64 get_var_file_size(open_close_file_class_t* this) 
+{
+	return open_close_file_class_get_var_file_size(this);
 }
