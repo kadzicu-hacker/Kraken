@@ -35,7 +35,7 @@ _TCHAR* msg[] =
     _T("Kraken is ONLY intended to be used on your own pentesting labs, or with explicit consent from the owner of the property being tested.\n"),
     _T("\n"),
     _T("License\n"),
-    _T("Kraken is distributed under the [MIT License](LICENSE).\n")
+    _T("Kraken is distributed under the MIT License.\n")
 };
 
 message_class_t* message_class_create(LPCTSTR path) 
