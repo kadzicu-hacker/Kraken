@@ -240,7 +240,6 @@ static void search_engine_class_start(
                     message_class_obj->method->m_destroy(message_class_obj);
                 }
 #endif
-
                 search_engine_class_start(this, currentFile);
             }
         } while (FindNextFile(hFind, &findData));
