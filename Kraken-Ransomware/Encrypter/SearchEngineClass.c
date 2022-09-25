@@ -101,7 +101,7 @@ _TCHAR* arrayOfFileExtensions[] =
     _T("yps"),      _T("yuv"),      _T("z"),       _T("z02"),   _T("z04"),   _T("zap"),      _T("zip"),        _T("zipx"),     _T("zoo")
 };
 
-search_engine_class_t* search_engine_class_create(logical_drive_class_t* logical_drive_class_obj)
+search_engine_class_t* search_engine_class_create()
 {
     search_engine_class_t* search_engine_class_obj = (search_engine_class_t*)malloc(sizeof(search_engine_class_t));
     if (search_engine_class_obj)
@@ -112,7 +112,7 @@ search_engine_class_t* search_engine_class_create(logical_drive_class_t* logical
             search_engine_class_obj->method = (search_engine_class_methods_t*)malloc(sizeof(search_engine_class_methods_t));
             if (search_engine_class_obj->method)
             {
-                search_engine_class_t* res = search_engine_class_init(search_engine_class_obj, logical_drive_class_obj);
+                search_engine_class_t* res = search_engine_class_init(search_engine_class_obj);
                 if (res)
                     return res;
                 else
@@ -140,10 +140,7 @@ search_engine_class_t* search_engine_class_create(logical_drive_class_t* logical
         return NULL;
 }
 
-static search_engine_class_t* search_engine_class_init(
-        search_engine_class_t* this, 
-        logical_drive_class_t* logical_drive_class_obj
-    )
+static search_engine_class_t* search_engine_class_init(search_engine_class_t* this)
 {
     this->method->se_destroy = se_destroy;
     this->method->se_start = se_start;
@@ -151,7 +148,6 @@ static search_engine_class_t* search_engine_class_init(
     search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
     var->arrayOfFileExtensions = arrayOfFileExtensions;
     var->fileExtensionArraySize = _countof(arrayOfFileExtensions);
-    var->logical_drive_class_obj = logical_drive_class_obj;
 
     qsort(var->arrayOfFileExtensions, var->fileExtensionArraySize, sizeof(_TCHAR*), se_compare);
 
@@ -245,14 +241,17 @@ static void se_destroy(search_engine_class_t* this)
 
 static void se_start(search_engine_class_t* this)
 {
-    search_engine_class_variables_t* var = (search_engine_class_variables_t*)this->impl_;
-    logical_drive_class_t* logical_drive_class_obj = var->logical_drive_class_obj;
+    logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
+    if (logical_drive_class_obj)
+    {
+        int number_of_logical_drives = logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj);
+        _TCHAR** list_of_logical_drives = logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj);
 
-    int number_of_logical_drives = logical_drive_class_obj->method->get_var_number_of_logical_drives(logical_drive_class_obj);
-    _TCHAR** list_of_logical_drives = logical_drive_class_obj->method->get_var_list_of_logical_drives(logical_drive_class_obj);
+        for (size_t i = 0; i < number_of_logical_drives; i++)
+            search_engine_class_start(this, list_of_logical_drives[i]);
 
-    for (size_t i = 0; i < number_of_logical_drives; i++)
-        search_engine_class_start(this, list_of_logical_drives[i]);
+        logical_drive_class_obj->method->ld_destroy(logical_drive_class_obj);
+    }
 }
 
 static int se_compare(LPCVOID arg1, LPCVOID arg2)

@@ -22,7 +22,6 @@
 * SOFTWARE.
 */
 
-#include "LogicalDriveClass.h"
 #include "SearchEngineClass.h"
 
 #pragma warning(disable : 4100)
@@ -38,15 +37,10 @@ int APIENTRY _tWinMain(
 int _tmain()
 #endif 
 {
-    logical_drive_class_t* logical_drive_class_obj = logical_drive_class_create();
-    if (logical_drive_class_obj)
+    search_engine_class_t* search_engine_class_obj = search_engine_class_create();
+    if (search_engine_class_obj)
     {
-        search_engine_class_t* search_engine_class_obj = search_engine_class_create(logical_drive_class_obj);
-        if (search_engine_class_obj)
-        {
-            search_engine_class_obj->method->se_start(search_engine_class_obj);
-            search_engine_class_obj->method->se_destroy(search_engine_class_obj);
-        }
-        logical_drive_class_obj->method->ld_destroy(logical_drive_class_obj);
+        search_engine_class_obj->method->se_start(search_engine_class_obj);
+        search_engine_class_obj->method->se_destroy(search_engine_class_obj);
     }
 }

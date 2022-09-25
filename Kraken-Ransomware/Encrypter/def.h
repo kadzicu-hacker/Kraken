@@ -63,7 +63,6 @@ typedef struct
 {
     _TCHAR** arrayOfFileExtensions;
     size_t fileExtensionArraySize;
-    logical_drive_class_t* logical_drive_class_obj;
 } search_engine_class_variables_t;
 
 typedef struct
