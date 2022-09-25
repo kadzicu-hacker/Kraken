@@ -119,4 +119,23 @@ typedef struct
     file_shredder_class_methods_t* method;
 } file_shredder_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    LPCTSTR path;
+    _TCHAR** msg;
+    size_t msgSize;
+} message_class_variables_t;
+
+typedef struct
+{
+    void(*m_destroy)(struct message_class_t*);
+    void(*m_send)(struct message_class_t*);
+} message_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    message_class_methods_t* method;
+} message_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__
