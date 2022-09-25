@@ -115,7 +115,7 @@ static void message_class_send(message_class_t* this)
             FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
 
             for (size_t i = 0x00; i < var->msgSize; i++)
-                fwrite(msg[i], sizeof(_TCHAR), _tcslen(var->msg[i]), file);
+                fwrite(var->msg[i], sizeof(_TCHAR), _tcslen(var->msg[i]), file);
         }
         open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
     }
