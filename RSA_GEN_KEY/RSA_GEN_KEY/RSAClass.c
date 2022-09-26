@@ -74,7 +74,7 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this)
     var->bigNum = NULL;
     var->publicKey = NULL;
     var->privateKey = NULL;
-    var->bits = 2048;
+    var->bits = 0x800;
 
     var->bigNum = BN_new();
     BN_set_word(var->bigNum, RSA_F4);
