@@ -24,8 +24,6 @@
 
 #include "RSAClass.h"
 
-#pragma warning(disable : 4100)
-
 int APIENTRY _tWinMain(
     _In_        HINSTANCE   hInstance,
     _In_opt_    HINSTANCE   hPrevInstance,
