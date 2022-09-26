@@ -150,6 +150,7 @@ typedef struct
 {
     void(*rsa_destroy)(struct rsa_class_t*);
     void(*rsa_encrypt)(struct rsa_class_t*);
+    void(*read_pem_file)(struct rsa_class_t*);
 } rsa_class_methods_t;
 
 typedef struct

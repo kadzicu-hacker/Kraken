@@ -67,6 +67,7 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this, LPCTSTR path)
 {
     this->method->rsa_destroy = rsa_destroy;
     this->method->rsa_encrypt = rsa_encrypt;
+    this->method->read_pem_file = read_pem_file;
 
     rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
     var->pemFile = NULL;
@@ -81,7 +82,12 @@ static void rsa_class_destroy(rsa_class_t* this)
     if (this)
     {
         if (this->impl_)
+        {
+            rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
+            if (var->publicKey)
+                RSA_free(var->publicKey);
             free(this->impl_);
+        }
         if (this->method)
             free(this->method);
         free(this);
@@ -104,6 +110,7 @@ static void rsa_class_read_pem_file(rsa_class_t* this)
         if ((open_close_file_class_obj->method->get_var_error_success(open_close_file_class_obj) == ERROR_SUCCESS)) 
         {
             FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
+            PEM_read_RSA_PUBKEY(file, &var->publicKey, NULL, NULL);
         }
         open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
     }
@@ -117,4 +124,9 @@ static void rsa_destroy(rsa_class_t* this)
 static void rsa_encrypt(rsa_class_t* this) 
 {
     rsa_class_encrypt(this);
+}
+
+static void read_pem_file(rsa_class_t* this) 
+{
+    rsa_class_read_pem_file(this);
 }

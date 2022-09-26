@@ -35,5 +35,6 @@ static void rsa_class_encrypt(rsa_class_t*);
 static void rsa_class_read_pem_file(rsa_class_t*);
 static void rsa_destroy(rsa_class_t*);
 static void rsa_encrypt(rsa_class_t*);
+static void read_pem_file(rsa_class_t*);
 
 #endif // !__rsa__class__h__
