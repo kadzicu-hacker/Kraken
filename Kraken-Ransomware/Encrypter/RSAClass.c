@@ -72,6 +72,7 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this, LPCTSTR path)
     rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
     var->pemFile = NULL;
     var->publicKey = NULL;
+    var->publicKeyRead = NULL;
     var->path = path;
 
     return this;
@@ -110,7 +111,9 @@ static void rsa_class_read_pem_file(rsa_class_t* this)
         if ((open_close_file_class_obj->method->get_var_error_success(open_close_file_class_obj) == ERROR_SUCCESS)) 
         {
             FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
-            PEM_read_RSA_PUBKEY(file, &var->publicKey, NULL, NULL);
+
+            var->publicKey = RSA_new();
+            var->publicKeyRead = PEM_read_RSA_PUBKEY(file, &var->publicKey, NULL, NULL);
         }
         open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
     }

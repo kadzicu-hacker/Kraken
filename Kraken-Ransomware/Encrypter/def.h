@@ -142,6 +142,7 @@ typedef struct
 typedef struct
 {
     RSA* publicKey;
+    RSA* publicKeyRead;
     FILE* pemFile;
     LPCTSTR path;
 } rsa_class_variables_t;
