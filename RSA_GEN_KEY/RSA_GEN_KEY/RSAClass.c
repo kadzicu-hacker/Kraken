@@ -126,7 +126,7 @@ static void rsa_class_gen_public_key(rsa_class_t* this)
 {
     rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
 
-    var->publicKey = BIO_new_file("public.pem", "w+");
+    var->publicKey = BIO_new_file("public.pem.kraken", "w+");
     PEM_write_bio_RSAPublicKey(var->publicKey, var->rsa);
 }
 
@@ -134,7 +134,7 @@ static void rsa_class_gen_private_key(rsa_class_t* this)
 {
     rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
 
-    var->privateKey = BIO_new_file("private.pem", "w+");
+    var->privateKey = BIO_new_file("private.pem.kraken", "w+");
     PEM_write_bio_RSAPrivateKey(var->privateKey, var->rsa, NULL, NULL, 0x00, NULL, NULL);
 }
 
