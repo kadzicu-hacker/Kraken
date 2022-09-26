@@ -76,13 +76,25 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this)
     var->privateKey = NULL;
     var->bits = 0x800;
 
-    var->bigNum = BN_new();
-    BN_set_word(var->bigNum, RSA_F4);
-
-    var->rsa = RSA_new();
-    RSA_generate_key_ex(var->rsa, var->bits, var->bigNum, NULL);
-
-    return this;
+    if (((var->bigNum = BN_new()) != NULL) && 
+        (BN_set_word(var->bigNum, RSA_F4) == 0x01))
+    {
+        if (((var->rsa = RSA_new()) != NULL) && 
+            (RSA_generate_key_ex(var->rsa, var->bits, var->bigNum, NULL) == 0x01))
+            return this;
+        else
+        {
+            if (var->bigNum)
+                BN_free(var->bigNum);
+            return NULL;
+        }
+    }
+    else 
+    {
+        if (var->bigNum)
+            BN_free(var->bigNum);
+        return NULL;
+    }
 }
 
 static void rsa_class_destroy(rsa_class_t* this) 
