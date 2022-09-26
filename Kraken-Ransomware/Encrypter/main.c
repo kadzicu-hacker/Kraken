@@ -24,8 +24,6 @@
 
 #include "SearchEngineClass.h"
 
-#pragma warning(disable : 4100)
-
 #ifndef _DEBUG
 int APIENTRY _tWinMain(
     _In_        HINSTANCE   hInstance,

@@ -95,7 +95,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -114,7 +114,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -133,7 +133,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -152,7 +152,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>

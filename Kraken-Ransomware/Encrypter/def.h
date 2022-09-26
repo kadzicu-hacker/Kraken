@@ -33,10 +33,6 @@
 #include <shlwapi.h>
 
 #pragma comment(lib, "shlwapi.lib")
-
-#pragma warning(disable : 4113)
-#pragma warning(disable : 4115)
-#pragma warning(disable : 4133)
 /////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
