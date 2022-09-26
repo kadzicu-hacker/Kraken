@@ -43,8 +43,8 @@ typedef struct
 typedef struct
 {
     void(*rsa_destroy)(struct rsa_class_t*);
-    void(*gen_private_key)(struct rsa_class_t*);
     void(*gen_public_key)(struct rsa_class_t*);
+    void(*gen_private_key)(struct rsa_class_t*);
 } rsa_class_methods_t;
 
 typedef struct
