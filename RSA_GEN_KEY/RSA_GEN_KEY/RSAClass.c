@@ -84,6 +84,8 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this)
             return this;
         else
         {
+            if (var->rsa)
+                RSA_free(var->rsa);
             if (var->bigNum)
                 BN_free(var->bigNum);
             return NULL;
