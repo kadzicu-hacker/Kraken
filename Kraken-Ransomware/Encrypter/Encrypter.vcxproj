@@ -24,6 +24,7 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="MessageClass.c" />
     <ClCompile Include="OpenCloseFileClass.c" />
+    <ClCompile Include="RSAClass.c" />
     <ClCompile Include="SearchEngineClass.c" />
   </ItemGroup>
   <ItemGroup>
@@ -32,6 +33,7 @@
     <ClInclude Include="LogicalDriveClass.h" />
     <ClInclude Include="MessageClass.h" />
     <ClInclude Include="OpenCloseFileClass.h" />
+    <ClInclude Include="RSAClass.h" />
     <ClInclude Include="SearchEngineClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

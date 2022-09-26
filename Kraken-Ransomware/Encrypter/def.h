@@ -33,6 +33,10 @@
 #include <shlwapi.h>
 
 #pragma comment(lib, "shlwapi.lib")
+
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
@@ -133,5 +137,24 @@ typedef struct
     void* impl_;
     message_class_methods_t* method;
 } message_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    RSA* publicKey;
+    FILE* pemFile;
+    LPCTSTR path;
+} rsa_class_variables_t;
+
+typedef struct
+{
+    void(*rsa_destroy)(struct rsa_class_t*);
+    void(*rsa_encrypt)(struct rsa_class_t*);
+} rsa_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    rsa_class_methods_t* method;
+} rsa_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__
