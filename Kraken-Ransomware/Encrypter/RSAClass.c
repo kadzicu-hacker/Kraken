@@ -100,7 +100,7 @@ static void rsa_class_read_pem_file(rsa_class_t* this)
     open_close_file_class_t* open_close_file_class_obj = open_close_file_class_create(_T("public.pem.kraken"));
     if (open_close_file_class_obj) 
     {
-        open_close_file_class_obj->method->ocf_open_file_rb(open_close_file_class_obj);
+        open_close_file_class_obj->method->ocf_open_file_r(open_close_file_class_obj);
         if ((open_close_file_class_obj->method->get_var_error_success(open_close_file_class_obj) == ERROR_SUCCESS)) 
         {
             FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
