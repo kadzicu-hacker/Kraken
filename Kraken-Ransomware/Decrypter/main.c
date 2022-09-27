@@ -22,21 +22,23 @@
 * SOFTWARE.
 */
 
-#include "def.h"
-#include "LogicalDriveClass.h"
-#include "FileShredderClass.h"
-#include "MessageClass.h"
-#include "XORClass.h"
+#include "SearchEngineClass.h"
 
-#ifndef __search__engine__class__h__
-#define __search__engine__class__h__
-
-search_engine_class_t* search_engine_class_create();
-static search_engine_class_t* search_engine_class_init(search_engine_class_t*);
-static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
-static void se_destroy(search_engine_class_t*);
-static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
-
-#endif // !__search__engine__class__h__
+#ifndef _DEBUG
+int APIENTRY _tWinMain(
+    _In_        HINSTANCE   hInstance,
+    _In_opt_    HINSTANCE   hPrevInstance,
+    _In_        LPTSTR      pCmdLine,
+    _In_        int         nCmdShow
+)
+#else
+int _tmain()
+#endif 
+{
+    search_engine_class_t* search_engine_class_obj = search_engine_class_create();
+    if (search_engine_class_obj)
+    {
+        search_engine_class_obj->method->se_start(search_engine_class_obj);
+        search_engine_class_obj->method->se_destroy(search_engine_class_obj);
+    }
+}

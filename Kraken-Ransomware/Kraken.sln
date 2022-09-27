@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Encrypter", "Encrypter\Encrypter.vcxproj", "{8D469CB6-64EA-46F2-9948-E2708C586634}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Decrypter", "Decrypter\Decrypter.vcxproj", "{FA6A91DA-D649-43EE-BD12-84C46AF0F110}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{8D469CB6-64EA-46F2-9948-E2708C586634}.Release|x64.Build.0 = Release|x64
 		{8D469CB6-64EA-46F2-9948-E2708C586634}.Release|x86.ActiveCfg = Release|Win32
 		{8D469CB6-64EA-46F2-9948-E2708C586634}.Release|x86.Build.0 = Release|Win32
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Debug|x64.ActiveCfg = Debug|x64
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Debug|x64.Build.0 = Debug|x64
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Debug|x86.ActiveCfg = Debug|Win32
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Debug|x86.Build.0 = Debug|Win32
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Release|x64.ActiveCfg = Release|x64
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Release|x64.Build.0 = Release|x64
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Release|x86.ActiveCfg = Release|Win32
+		{FA6A91DA-D649-43EE-BD12-84C46AF0F110}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

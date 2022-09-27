@@ -23,20 +23,15 @@
 */
 
 #include "def.h"
-#include "LogicalDriveClass.h"
-#include "FileShredderClass.h"
-#include "MessageClass.h"
-#include "XORClass.h"
 
-#ifndef __search__engine__class__h__
-#define __search__engine__class__h__
+#ifndef __file__shredder__class__h__
+#define __file__shredder__class__h__
 
-search_engine_class_t* search_engine_class_create();
-static search_engine_class_t* search_engine_class_init(search_engine_class_t*);
-static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
-static void se_destroy(search_engine_class_t*);
-static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
+file_shredder_class_t* file_shredder_class_create(LPCTSTR);
+static file_shredder_class_t* file_shredder_class_init(file_shredder_class_t*, LPCTSTR);
+static void file_shredder_class_destroy(file_shredder_class_t*);
+static void file_shredder_class_start(file_shredder_class_t*);
+static void fs_destroy(file_shredder_class_t*);
+static void fs_start(file_shredder_class_t*);
 
-#endif // !__search__engine__class__h__
+#endif // !__file__shredder__class__h__

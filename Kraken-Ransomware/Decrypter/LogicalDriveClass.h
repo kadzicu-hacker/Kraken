@@ -23,20 +23,20 @@
 */
 
 #include "def.h"
-#include "LogicalDriveClass.h"
-#include "FileShredderClass.h"
-#include "MessageClass.h"
-#include "XORClass.h"
 
-#ifndef __search__engine__class__h__
-#define __search__engine__class__h__
+#ifndef __logical__drive__class__h__
+#define __logical__drive__class__h__
 
-search_engine_class_t* search_engine_class_create();
-static search_engine_class_t* search_engine_class_init(search_engine_class_t*);
-static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
-static void se_destroy(search_engine_class_t*);
-static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
+logical_drive_class_t* logical_drive_class_create();
+static logical_drive_class_t* logical_drive_class_init(logical_drive_class_t*);
+static void logical_drive_class_destroy(logical_drive_class_t*);
+static _TCHAR** logical_drive_class_get_var_list_of_logical_drives(logical_drive_class_t*);
+static int logical_drive_class_get_var_number_of_logical_drives(logical_drive_class_t*);
+static int logical_drive_class_get_var_max_number_of_logical_drives(logical_drive_class_t*);
+static void ld_destroy(logical_drive_class_t*);
+static _TCHAR** get_var_list_of_logical_drives(logical_drive_class_t*);
+static int get_var_number_of_logical_drives(logical_drive_class_t*);
+static int get_var_max_number_of_logical_drives(logical_drive_class_t*);
+static void logical_drive_class_init_list_of_logical_drives(logical_drive_class_t*);
 
-#endif // !__search__engine__class__h__
+#endif // !__logical__drive__class__h__

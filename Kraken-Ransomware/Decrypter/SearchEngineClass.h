@@ -25,7 +25,6 @@
 #include "def.h"
 #include "LogicalDriveClass.h"
 #include "FileShredderClass.h"
-#include "MessageClass.h"
 #include "XORClass.h"
 
 #ifndef __search__engine__class__h__
@@ -37,6 +36,5 @@ static void search_engine_class_destroy(search_engine_class_t*);
 static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
 static void se_destroy(search_engine_class_t*);
 static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
 
 #endif // !__search__engine__class__h__

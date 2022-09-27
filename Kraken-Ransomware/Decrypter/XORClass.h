@@ -23,20 +23,16 @@
 */
 
 #include "def.h"
-#include "LogicalDriveClass.h"
-#include "FileShredderClass.h"
-#include "MessageClass.h"
-#include "XORClass.h"
+#include "OpenCloseFileClass.h"
 
-#ifndef __search__engine__class__h__
-#define __search__engine__class__h__
+#ifndef __xor__class__h__
+#define __xor__class__h__
 
-search_engine_class_t* search_engine_class_create();
-static search_engine_class_t* search_engine_class_init(search_engine_class_t*);
-static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
-static void se_destroy(search_engine_class_t*);
-static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
+xor_class_t* xor_class_create(LPCTSTR);
+static xor_class_t* xor_class_init(xor_class_t*, LPCTSTR);
+static void xor_class_destroy(xor_class_t*);
+static void xor_class_decrypt(xor_class_t*);
+static void xor_destroy(xor_class_t*);
+static void xor_decrypt(xor_class_t*);
 
-#endif // !__search__engine__class__h__
+#endif // !__xor__class__h__
