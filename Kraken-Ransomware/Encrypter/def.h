@@ -139,7 +139,7 @@ typedef struct
 typedef struct
 {
     LPCTSTR path;
-    int key;
+    unsigned char key;
 } xor_class_variables_t;
 
 typedef struct

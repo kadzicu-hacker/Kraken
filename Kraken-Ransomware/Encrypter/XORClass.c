@@ -141,7 +141,7 @@ static void xor_class_read_file_key(xor_class_t* this)
             LONG64 file_size = open_close_file_class_obj->method->get_var_file_size(open_close_file_class_obj);
             FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
 
-            fread(&var->key, sizeof(int), file_size, file);
+            fread(&var->key, sizeof(unsigned char), file_size, file);
         }
         open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
     }
