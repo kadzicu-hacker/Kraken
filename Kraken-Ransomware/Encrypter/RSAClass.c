@@ -70,7 +70,6 @@ static rsa_class_t* rsa_class_init(rsa_class_t* this, LPCTSTR path)
     this->method->read_pem_file = read_pem_file;
 
     rsa_class_variables_t* var = (rsa_class_variables_t*)this->impl_;
-    var->pemFile = NULL;
     var->publicKey = NULL;
     var->publicKeyRead = NULL;
     var->path = path;
