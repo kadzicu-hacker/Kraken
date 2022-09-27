@@ -68,7 +68,6 @@ static open_close_file_class_t* open_close_file_class_init(open_close_file_class
     this->method->ocf_destroy = ocf_destroy;
     this->method->ocf_open_file_rb = ocf_open_file_rb;
     this->method->ocf_open_file_wb = ocf_open_file_wb;
-    this->method->ocf_open_file_rwb = ocf_open_file_rwb;
     this->method->get_var_error_success = get_var_error_success;
     this->method->get_var_file = get_var_file;
     this->method->get_var_file_size = get_var_file_size;
@@ -107,11 +106,6 @@ static void open_close_file_class_open_file_rb(open_close_file_class_t* this)
 static void open_close_file_class_open_file_wb(open_close_file_class_t* this) 
 {
     open_close_file_class_open_file_main(this, _T("wb"));
-}
-
-static void open_close_file_class_open_file_rwb(open_close_file_class_t* this) 
-{
-    open_close_file_class_open_file_main(this, _T("r+b"));
 }
 
 static void open_close_file_class_open_file_main(open_close_file_class_t* this, LPCTSTR mode) 
@@ -169,11 +163,6 @@ static void ocf_open_file_rb(open_close_file_class_t* this)
 static void ocf_open_file_wb(open_close_file_class_t* this) 
 {
     open_close_file_class_open_file_wb(this);
-}
-
-static void ocf_open_file_rwb(open_close_file_class_t* this) 
-{
-    open_close_file_class_open_file_rwb(this);
 }
 
 static int get_var_error_success(open_close_file_class_t* this) 
