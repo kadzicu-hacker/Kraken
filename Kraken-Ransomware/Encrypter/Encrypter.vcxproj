@@ -25,6 +25,7 @@
     <ClCompile Include="MessageClass.c" />
     <ClCompile Include="OpenCloseFileClass.c" />
     <ClCompile Include="SearchEngineClass.c" />
+    <ClCompile Include="XORClass.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="def.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="MessageClass.h" />
     <ClInclude Include="OpenCloseFileClass.h" />
     <ClInclude Include="SearchEngineClass.h" />
+    <ClInclude Include="XORClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -136,4 +136,22 @@ typedef struct
     message_class_methods_t* method;
 } message_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    LPCTSTR path;
+    int key;
+} xor_class_variables_t;
+
+typedef struct
+{
+    void(*xor_destroy)(struct xor_class_t*);
+    void(*xor_encrypt)(struct xor_class_t*);
+} xor_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    xor_class_methods_t* method;
+} xor_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__
