@@ -67,10 +67,9 @@ static xor_class_t* xor_class_init(xor_class_t* this, LPCTSTR path)
 {
     this->method->xor_destroy = xor_destroy;
     this->method->xor_encrypt = xor_encrypt;
-    this->method->read_file_key = read_file_key;
 
     xor_class_variables_t* var = (xor_class_variables_t*)this->impl_;
-    var->key = 0x00;
+    var->key = 0x02;
     var->path = path;
 
     return this;
@@ -128,25 +127,6 @@ static void xor_class_encrypt(xor_class_t* this)
     }
 }
 
-static void xor_class_read_file_key(xor_class_t* this) 
-{
-    xor_class_variables_t* var = (xor_class_variables_t*)this->impl_;
-
-    open_close_file_class_t* open_close_file_class_obj = open_close_file_class_create(_T("xor.key.kraken"));
-    if (open_close_file_class_obj)
-    {
-        open_close_file_class_obj->method->ocf_open_file_r(open_close_file_class_obj);
-        if ((open_close_file_class_obj->method->get_var_error_success(open_close_file_class_obj) == ERROR_SUCCESS))
-        {
-            LONG64 file_size = open_close_file_class_obj->method->get_var_file_size(open_close_file_class_obj);
-            FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
-
-            fread(&var->key, sizeof(unsigned char), file_size, file);
-        }
-        open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
-    }
-}
-
 static void xor_destroy(xor_class_t* this) 
 {
     xor_class_destroy(this);
@@ -155,9 +135,4 @@ static void xor_destroy(xor_class_t* this)
 static void xor_encrypt(xor_class_t* this) 
 {
     xor_class_encrypt(this);
-}
-
-static void read_file_key(xor_class_t* this) 
-{
-    xor_class_read_file_key(this);
 }

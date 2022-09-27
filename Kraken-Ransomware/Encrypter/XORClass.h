@@ -32,9 +32,7 @@ xor_class_t* xor_class_create(LPCTSTR);
 static xor_class_t* xor_class_init(xor_class_t*, LPCTSTR);
 static void xor_class_destroy(xor_class_t*);
 static void xor_class_encrypt(xor_class_t*);
-static void xor_class_read_file_key(xor_class_t*);
 static void xor_destroy(xor_class_t*);
 static void xor_encrypt(xor_class_t*);
-static void read_file_key(xor_class_t*);
 
 #endif // !__xor__class__h__
