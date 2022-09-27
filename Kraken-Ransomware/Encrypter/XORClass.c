@@ -23,3 +23,106 @@
 */
 
 #include "XORClass.h"
+
+xor_class_t* xor_class_create(LPCTSTR path) 
+{
+    xor_class_t* xor_class_obj = (xor_class_t*)malloc(sizeof(xor_class_t));
+    if (xor_class_obj)
+    {
+        xor_class_obj->impl_ = malloc(sizeof(xor_class_variables_t));
+        if (xor_class_obj->impl_)
+        {
+            xor_class_obj->method = (xor_class_methods_t*)malloc(sizeof(xor_class_methods_t));
+            if (xor_class_obj->method)
+            {
+                xor_class_t* res = xor_class_init(xor_class_obj, path);
+                if (res)
+                    return res;
+                else
+                {
+                    free(xor_class_obj->method);
+                    free(xor_class_obj->impl_);
+                    free(xor_class_obj);
+                    return NULL;
+                }
+            }
+            else
+            {
+                free(xor_class_obj->impl_);
+                free(xor_class_obj);
+                return NULL;
+            }
+        }
+        else
+        {
+            free(xor_class_obj);
+            return NULL;
+        }
+    }
+    else
+        return NULL;
+}
+
+static xor_class_t* xor_class_init(xor_class_t* this, LPCTSTR path) 
+{
+    this->method->xor_destroy = xor_destroy;
+    this->method->xor_encrypt = xor_encrypt;
+    this->method->read_file_key = read_file_key;
+
+    xor_class_variables_t* var = (xor_class_variables_t*)this->impl_;
+    var->key = 0x00;
+    var->path = path;
+
+    return this;
+}
+
+static void xor_class_destroy(xor_class_t* this) 
+{
+    if (this)
+    {
+        if (this->impl_)
+            free(this->impl_);
+        if (this->method)
+            free(this->method);
+        free(this);
+    }
+}
+
+static void xor_class_encrypt(xor_class_t* this) 
+{
+
+}
+
+static void xor_class_read_file_key(xor_class_t* this) 
+{
+    xor_class_variables_t* var = (xor_class_variables_t*)this->impl_;
+
+    open_close_file_class_t* open_close_file_class_obj = open_close_file_class_create(_T("xor.key.kraken"));
+    if (open_close_file_class_obj)
+    {
+        open_close_file_class_obj->method->ocf_open_file_r(open_close_file_class_obj);
+        if ((open_close_file_class_obj->method->get_var_error_success(open_close_file_class_obj) == ERROR_SUCCESS))
+        {
+            LONG64 file_size = open_close_file_class_obj->method->get_var_file_size(open_close_file_class_obj);
+            FILE* file = open_close_file_class_obj->method->get_var_file(open_close_file_class_obj);
+
+            fread(&var->key, sizeof(int), file_size, file);
+        }
+        open_close_file_class_obj->method->ocf_destroy(open_close_file_class_obj);
+    }
+}
+
+static void xor_destroy(xor_class_t* this) 
+{
+    xor_class_destroy(this);
+}
+
+static void xor_encrypt(xor_class_t* this) 
+{
+    xor_class_encrypt(this);
+}
+
+static void read_file_key(xor_class_t* this) 
+{
+    xor_class_read_file_key(this);
+}
