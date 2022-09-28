@@ -19,20 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="def.h" />
-    <ClInclude Include="LogicalDriveClass.h" />
-    <ClInclude Include="SearchEngineClass.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="FileShredderClass.c" />
     <ClCompile Include="LogicalDriveClass.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="MessageClass.c" />
+    <ClCompile Include="OpenCloseFileClass.c" />
     <ClCompile Include="SearchEngineClass.c" />
+    <ClCompile Include="XORClass.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="def.h" />
+    <ClInclude Include="FileShredderClass.h" />
+    <ClInclude Include="LogicalDriveClass.h" />
+    <ClInclude Include="MessageClass.h" />
+    <ClInclude Include="OpenCloseFileClass.h" />
+    <ClInclude Include="SearchEngineClass.h" />
+    <ClInclude Include="XORClass.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{b6b71630-b449-4787-8f7c-9972778df526}</ProjectGuid>
-    <RootNamespace>Kraken</RootNamespace>
+    <ProjectGuid>{8d469cb6-64ea-46f2-9948-e2708c586634}</ProjectGuid>
+    <RootNamespace>Encrypter</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -89,7 +97,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;4100;4113;4115;4133</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -108,7 +116,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;4100;4113;4115;4133</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -127,7 +135,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;4100;4113;4115;4133</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -146,7 +154,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>5105;4100;4113;4115;4133</DisableSpecificWarnings>
+      <DisableSpecificWarnings>5105;4996;4100;4113;4115;4133</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>

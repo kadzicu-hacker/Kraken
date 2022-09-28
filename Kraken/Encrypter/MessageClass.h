@@ -23,17 +23,16 @@
 */
 
 #include "def.h"
-#include "LogicalDriveClass.h"
+#include "OpenCloseFileClass.h"
 
-#ifndef __search__engine__class__h__
-#define __search__engine__class__h__
+#ifndef __message__class__h__
+#define __message__class__h__
 
-search_engine_class_t* search_engine_class_create();
-static search_engine_class_t* search_engine_class_init(search_engine_class_t*);
-static void search_engine_class_destroy(search_engine_class_t*);
-static void search_engine_class_start(search_engine_class_t*, LPCTSTR);
-static void se_destroy(search_engine_class_t*);
-static void se_start(search_engine_class_t*);
-static int se_compare(LPCVOID, LPCVOID);
+message_class_t* message_class_create(LPCTSTR);
+static message_class_t* message_class_init(message_class_t*, LPCTSTR);
+static void message_class_destroy(message_class_t*);
+static void message_class_send(message_class_t*);
+static void m_destroy(message_class_t*);
+static void m_send(message_class_t*);
 
-#endif // !__search__engine__class__h__
+#endif // !__message__class__h__

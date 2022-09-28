@@ -25,6 +25,7 @@
 #ifndef __def__h__
 #define __def__h__
 
+#include <time.h>
 #include <stdio.h>
 #include <tchar.h>
 #include <shlobj.h> 
@@ -57,8 +58,7 @@ typedef struct
 /////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
-    _TCHAR** arrayOfFileExtensions;
-    size_t fileExtensionArraySize;
+    _TCHAR* FileExt;
 } search_engine_class_variables_t;
 
 typedef struct
@@ -72,5 +72,64 @@ typedef struct
     void* impl_;
     search_engine_class_methods_t* method;
 } search_engine_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    FILE* file;
+    LONG64 fileSize;
+    LPCTSTR path;
+    int errorSuccess;
+} open_close_file_class_variables_t;
+
+typedef struct
+{
+    void(*ocf_destroy)(struct open_close_file_class_t*);
+    void(*ocf_open_file_rb)(struct open_close_file_class_t*);
+    void(*ocf_open_file_wb)(struct open_close_file_class_t*);
+    int(*get_var_error_success)(struct open_close_file_class_t*);
+    FILE*(*get_var_file)(struct open_close_file_class_t*);
+    LONG64(*get_var_file_size)(struct open_close_file_class_t*);
+} open_close_file_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    open_close_file_class_methods_t* method;
+} open_close_file_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    LPCTSTR path;
+} file_shredder_class_variables_t;
+
+typedef struct
+{
+    void(*fs_destroy)(struct file_shredder_class_t*);
+    void(*fs_start)(struct file_shredder_class_t*);
+} file_shredder_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    file_shredder_class_methods_t* method;
+} file_shredder_class_t;
+/////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct
+{
+    LPCTSTR path;
+    int key;
+} xor_class_variables_t;
+
+typedef struct
+{
+    void(*xor_destroy)(struct xor_class_t*);
+    void(*xor_decrypt)(struct xor_class_t*);
+} xor_class_methods_t;
+
+typedef struct
+{
+    void* impl_;
+    xor_class_methods_t* method;
+} xor_class_t;
 /////////////////////////////////////////////////////////////////////////////////////////////
 #endif // !__def__h__
