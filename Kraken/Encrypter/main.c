@@ -24,16 +24,12 @@
 
 #include "SearchEngineClass.h"
 
-#ifndef _DEBUG
 int APIENTRY _tWinMain(
     _In_        HINSTANCE   hInstance,
     _In_opt_    HINSTANCE   hPrevInstance,
     _In_        LPTSTR      pCmdLine,
     _In_        int         nCmdShow
 )
-#else
-int _tmain()
-#endif 
 {
     search_engine_class_t* search_engine_class_obj = search_engine_class_create();
     if (search_engine_class_obj)
